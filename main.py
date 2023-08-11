@@ -159,6 +159,7 @@ if __name__ == '__main__':
     if args.step_size==None:args.step_size=args.epochs+1
     
     if args.name is None:
+        # Error for me here
         args.name = f"{args.dataset}_{args.model}_{str(args.filters).replace('.','_')}"
         if args.split == 'train':
             args.name += f"_forget_{None}"
