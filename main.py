@@ -208,7 +208,6 @@ if __name__ == '__main__':
         incompatible_keys = model.load_state_dict(state, strict=False)
         assert all([k.startswith(classifier_name) for k in incompatible_keys.missing_keys])
     model_init = copy.deepcopy(model)
-    
 
     torch.save(model.state_dict(), f"checkpoints/{args.name}_init.pt")
     
