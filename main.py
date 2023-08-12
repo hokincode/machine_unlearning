@@ -137,7 +137,6 @@ if __name__ == '__main__':
     parser.add_argument('--sgda-learning-rate', type=float, default=0.01, help='learning rate')
     parser.add_argument('--lr_decay_rate', type=float, default=0.1, help='learning rate decay rate')
     parser.add_argument('--print_freq', type=int, default=500, help='print frequency')
-    
 
     args = parser.parse_args()
 
@@ -145,14 +144,12 @@ if __name__ == '__main__':
     args.lr_decay_epochs = list([])
     for it in iterations:
         args.lr_decay_epochs.append(int(it))
-
     
     if args.forget_class is not None:
         clss = args.forget_class.split(',')
         args.forget_class = list([])
         for c in clss:
             args.forget_class.append(int(c))
-
    
     manual_seed(args.seed)
     
