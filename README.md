@@ -35,3 +35,7 @@ We have used the code from the following two repositories:
 (Selective Forgetting)[https://github.com/AdityaGolatkar/SelectiveForgetting.git]
 
 (RepDistiller)[https://github.com/HobbitLong/RepDistiller.git]
+
+### Code adapted from 
+https://github.com/meghdadk/SCRUB
+
