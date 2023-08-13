@@ -221,18 +221,14 @@ if __name__ == '__main__':
         
     weight_decay = args.weight_decay if not args.l1 else 0.
     optimizer = optim.SGD(parameters, lr=args.lr, momentum=args.momentum, weight_decay=0.0)
-    #optimizer = optim.Adam(parameters,lr=args.lr,weight_decay=0)
     criterion = torch.nn.CrossEntropyLoss().to(args.device) if args.lossfn=='ce' else torch.nn.MSELoss().to(args.device)
-    #optimizer = optim.SGD(model.parameters(),lr=args.lr,momentum=0.9,weight_decay=args.weight_decay)
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, args.step_size, gamma=0.1, last_epoch=-1)
 
     train_time = 0
     for epoch in range(args.epochs):
         adjust_learning_rate(optimizer,epoch)
-        #sgda_adjust_learning_rate(epoch, args, optimizer)
         t1 = time.time()
         run_epoch(args, model, model_init, train_loader, criterion, optimizer, scheduler, epoch, weight_decay, mode='train', quiet=args.quiet)
-        #train_acc, train_loss = train_vanilla(epoch, train_loader, model, criterion, optimizer, args)
         t2 = time.time()
         train_time += np.round(t2-t1,2)
         if epoch % 500000 == 0:
@@ -243,7 +239,3 @@ if __name__ == '__main__':
             torch.save(model.state_dict(), f"checkpoints/{args.name}_{epoch}.pt")
         print(f'Epoch Time: {np.round(time.time()-t1,2)} sec')
     print (f'Pure training time: {train_time} sec')
-
-# if __name__ == '__main__':
-#     main()
-
