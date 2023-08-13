@@ -291,7 +291,15 @@ def replace_indexes(dataset: torch.utils.data.Dataset, indexes: Union[List[int],
                     only_mark: bool = False):
     if not only_mark:
         rng = np.random.RandomState(seed)
+
+        # set(range(len(dataset))) - set(indexes): Performs a set difference operation between
+        # the set of all possible indexes and the set of excluded indexes. This results in a
+        # set of indexes that are available for replacement.
+        #
+        # In short, this line of the code is the most important line of the code, that it ensures
+        # the new indexes data are not from the data that we want to replace.
         new_indexes = rng.choice(list(set(range(len(dataset))) - set(indexes)), size=len(indexes))
+
         dataset.data[indexes] = dataset.data[new_indexes]
         dataset.targets[indexes] = dataset.targets[new_indexes]
     else:
