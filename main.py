@@ -204,9 +204,12 @@ if __name__ == '__main__':
     
     if args.resume is not None:
         state = torch.load(args.resume)
+        print("State", state)
+        print("Args", args.resume)
         state = {k: v for k, v in state.items() if not k.startswith(classifier_name)}
         incompatible_keys = model.load_state_dict(state, strict=False)
         assert all([k.startswith(classifier_name) for k in incompatible_keys.missing_keys])
+
     model_init = copy.deepcopy(model)
 
     torch.save(model.state_dict(), f"checkpoints/{args.name}_init.pt")
