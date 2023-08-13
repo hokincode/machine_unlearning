@@ -199,7 +199,7 @@ if __name__ == '__main__':
     print(f"Number of Classes: {num_classes}")
     model = models.get_model(args.model, num_classes=num_classes, filters_percentage=args.filters).to(args.device)
     
-    if args.model=='allcnn':classifier_name='classifier.'
+    if args.model=='mlp':classifier_name='classifier.'
     elif 'resnet' in args.model:classifier_name='linear.'
     
     if args.resume is not None:
