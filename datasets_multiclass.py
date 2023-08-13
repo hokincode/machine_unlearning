@@ -335,8 +335,6 @@ def confuse_class(dataset: torch.utils.data.Dataset, class_to_replace: List[int]
     dataset.targets[sub_indexes1] = class_to_replace[0]
 
     indexes = np.concatenate((sub_indexes0, sub_indexes1))
-
-
     replace_indexes(dataset, indexes, seed, only_mark)
 
 def get_loaders(dataset_name, class_to_replace: List[int] = None, num_indexes_to_replace: int = None,
@@ -413,6 +411,7 @@ def get_loaders(dataset_name, class_to_replace: List[int] = None, num_indexes_to
         
     if class_to_replace is not None and indexes_to_replace is not None:
         raise ValueError("Only one of `class_to_replace` and `indexes_to_replace` can be specified")
+
     if class_to_replace is not None:
         if confuse_mode:
             if len(class_to_replace) != 2:
