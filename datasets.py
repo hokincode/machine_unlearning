@@ -258,7 +258,7 @@ def mix100(root, augment=False):
     lacuna_train_set = Lacuna100(root=root, train=True, transform=transform_train)
     lacuna_test_set = Lacuna100(root=root, train=False, transform=transform_test)
     cifar_train_set = torchvision.datasets.CIFAR100(root=root, train=True, download=False, transform=transform_train)
-    cifar_test_set  = torchvision.datasets.CIFAR100(root=root, train=False, download=False, transform=transform_test)
+    cifar_test_set = torchvision.datasets.CIFAR100(root=root, train=False, download=False, transform=transform_test)
     
     lacuna_train_set.targets = np.array(lacuna_train_set.targets)
     lacuna_test_set.targets = np.array(lacuna_test_set.targets)
