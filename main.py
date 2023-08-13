@@ -142,6 +142,7 @@ if __name__ == '__main__':
 
     iterations = args.lr_decay_epochs.split(',')
     args.lr_decay_epochs = list([])
+
     for it in iterations:
         args.lr_decay_epochs.append(int(it))
     
