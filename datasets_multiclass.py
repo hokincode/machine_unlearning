@@ -337,17 +337,24 @@ def replace_indexes(dataset: torch.utils.data.Dataset, indexes: Union[List[int],
 # the replace_class function is used to replace or mark specific instances of certain classes within a
 # dataset. It identifies the indexes of data samples belonging to the specified classes, and depending
 # on the provided parameters, replaces or marks these instances.
-
 def replace_class(dataset: torch.utils.data.Dataset, class_to_replace: List[int], num_indexes_to_replace: int = None,
                   seed: int = 0, only_mark: bool = False):
     indexes = np.array([])
     for itm in class_to_replace:
+        # The result is that indexes accumulates the indexes of all data samples in the dataset
+        # that belong to the specified class label itm.
+        # Basically, this gives you the indexes of the class you mentioned in the dataset.
         indexes = np.concatenate((indexes, np.flatnonzero(np.array(dataset.targets) == itm)))
+    # Convert indexes into int
     indexes = indexes.astype(int)
+
     if num_indexes_to_replace is not None:
         assert num_indexes_to_replace <= len(
             indexes), f"Want to replace {num_indexes_to_replace} indexes but only {len(indexes)} samples in dataset"
         rng = np.random.RandomState(seed)
+        # The result of this line is that indexes will be updated to contain a randomly selected subset of indexes
+        # from the original array. The size of the subset will be equal to num_indexes_to_replace.
+        # Basically, this line to resize the numbers to the number you want to replace.
         indexes = rng.choice(indexes, size=num_indexes_to_replace, replace=False)
         print(f"Replacing indexes {indexes}")
     replace_indexes(dataset, indexes, seed, only_mark)
