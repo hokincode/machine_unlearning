@@ -301,7 +301,6 @@ def replace_indexes(dataset: torch.utils.data.Dataset, indexes: Union[List[int],
 
 def replace_class(dataset: torch.utils.data.Dataset, class_to_replace: List[int], num_indexes_to_replace: int = None,
                   seed: int = 0, only_mark: bool = False):
-
     indexes = np.array([])
     for itm in class_to_replace:
         indexes = np.concatenate((indexes, np.flatnonzero(np.array(dataset.targets) == itm)))
