@@ -393,14 +393,6 @@ def get_loaders(dataset_name, class_to_replace: List[int] = None, num_indexes_to
         indexes1 = np.flatnonzero(np.array(train_set.targets) == class_to_replace[1])
         indexes1 = indexes1.astype(int)
 
-        #np.random.seed(seed)
-        #np.random.shuffle(indexes0)
-        #np.random.seed(seed)
-        #np.random.shuffle(indexes1)
-
-        #sub_indexes0 = indexes0[:int(num_indexes_to_replace/2)]
-        #sub_indexes1 = indexes1[:int(num_indexes_to_replace/2)]
-
         rng = np.random.RandomState(seed-1)
         sub_indexes0 = rng.choice(indexes0, size=int(num_indexes_to_replace/2), replace=False)
         sub_indexes1 = rng.choice(indexes1, size=int(num_indexes_to_replace/2), replace=False)
