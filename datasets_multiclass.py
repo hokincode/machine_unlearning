@@ -179,15 +179,6 @@ def small_mnist(root, augment=False):
     test_set = Small_MNIST(root=root, train=False, transform=transform_test)
     return train_set, test_set
 
-
-@_add_dataset
-def small_binary_mnist(root, augment=False):
-    transform_train, transform_test = _get_mnist_transforms(augment=augment)
-    train_set = Small_Binary_MNIST(root=root, train=True, transform=transform_train)
-    test_set = Small_Binary_MNIST(root=root, train=False, transform=transform_test)
-    return train_set, test_set
-
-
 @_add_dataset
 def lacuna100(root, augment=False):
     transform_train, transform_test = _get_lacuna_transforms(augment=augment)
