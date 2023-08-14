@@ -97,7 +97,7 @@ if __name__ == '__main__':
                         help='Use data augmentation')
     parser.add_argument('--batch-size', type=int, default=128, metavar='N',
                         help='input batch size for training (default: 128)')
-    parser.add_argument('--dataset', default='small_binary_mnist')
+    parser.add_argument('--dataset', default='small_mnist')
     parser.add_argument('--dataroot', type=str, default='data/')
     parser.add_argument('--disable-bn', action='store_true', default=False,
                         help='Put batchnorm in eval mode and don\'t update the running averages')
